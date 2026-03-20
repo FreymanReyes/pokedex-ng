@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
+import { publicGuard } from './core/guards/public.guard';
 
 export const routes: Routes = [
     {
@@ -9,6 +10,7 @@ export const routes: Routes = [
   },
   {
     path: 'login',
+    canActivate: [publicGuard],
     loadComponent: () =>
       import('./features/auth/pages/login/login').then(m => m.LoginPage)
   },
@@ -21,6 +23,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'login'
+    redirectTo: 'pokemon'
   }
 ];
